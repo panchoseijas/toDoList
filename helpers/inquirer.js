@@ -34,7 +34,7 @@ const questions = [
             },
             {
                 value: '0',
-                name: `${ '7.'.green } Crear Tarea`
+                name: `${ '7.'.green } Salir`
             },
 
 
@@ -82,9 +82,89 @@ const leerInput = async( ) => {
     return desc;
 }
 
+const listarCheckBox = async( tareas )  => {
+
+    const choices = [];
+    tareas.forEach( (tarea,i) => {
+
+        const ind = `${i + 1}.`.green;
+        const checked = (tarea.completadaEn) ? true : false;
+        choices.push({
+            value: tarea.id,
+            name: `${ind} ${tarea.desc}`,
+            checked
+        })
+    })
+
+
+    const question = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Indica que tarea quieres borrar',
+            choices
+        }
+    ]
+    
+    const {ids} = await inquirer.prompt(question);
+
+    return ids;
+
+}
+
+
+const listarTareasABorrar = async( tareas = []) => {
+    // console.log(this.listadoArray);
+
+    const choices = tareas.map( (tarea,i) => {
+        const ind = `${i + 1}. `.green;
+        return {
+            value: tarea.id,
+            name: `${ind} ${tarea.desc}`
+        }
+    });
+
+    const question = [
+        {
+            type: 'list',
+            name: 'id',
+            choices,
+        }
+    ]
+    
+    const {id} = await inquirer.prompt(question);
+
+    return id;
+
+}
+
+
+
+const confirmacion = async() => {
+
+    const question = [
+        {
+            type: 'confirm',
+            name: 'confirm',
+            message: 'Seguro quieres borrar?'
+        }
+    ]
+
+    const {confirm} = await inquirer.prompt(question);
+
+
+    return confirm;
+
+}
+
+
+
 
 module.exports = {
     mostrarMenu,
     pausa,
-    leerInput
+    leerInput,
+    listarCheckBox,
+    listarTareasABorrar,
+    confirmacion
 }
