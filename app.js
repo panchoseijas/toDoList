@@ -1,5 +1,6 @@
 const { mostrarMenu, pausa, leerInput } = require('./helpers/inquirer');
-const Tareas = require('./models/Tareas');
+const Tareas = require('./models/tareas');
+
 
 
 const menu = async() => {

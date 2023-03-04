@@ -1,5 +1,6 @@
 
-const Tarea = require('Tarea.js')
+const Tarea = require('./tarea');
+
 
 class Tareas{
     _listado = {}
@@ -16,4 +17,4 @@ class Tareas{
 }
 
 
-module.exports = Tareas;
+module.exports = Tar;
