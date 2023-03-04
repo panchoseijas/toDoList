@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const file = './db/DB.JSON';
+const file = './db/db.JSON';
 
 const guardarDB = ( listado = []) => {
 
